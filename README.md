@@ -24,9 +24,8 @@ incidentes para la analítica
 │   │   └── services.py
 │   ├── commands
 │   │   ├── base_command.py
-│   │   ├── create.py
-│   │   ├── create_client.py
-│   │   ├── update_plan.py
+│   │   ├── get_analitica.py
+│   │   ├── create_reporte.py
 │   │   └── ping.py
 │   ├── errors
 │   │   ├── errors.py
@@ -35,10 +34,10 @@ incidentes para la analítica
 │   ├── main.py
 │   └── models
 │       ├── __init__.py
-│       └── client.py
+│       └── incidente.py
 └── tests
     ├── __init__.py
-    └── test_create_client.py
+    └── test_create_reporte.py
 ```
 
 
