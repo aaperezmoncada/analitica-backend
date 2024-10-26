@@ -70,14 +70,7 @@ Consolida y cálcula los datos que se mostraran en la interfaz gráficando los r
 
 ```json
 {
-    "id": "ed140dbe-06d8-45dc-b5fc-4eb46606fc47",
-    "name": "John Doe",
-    "email": "john.doe@example.com",
-    "idNumber": "123456789",
-    "phoneNumber": "321567890",
-    "plan": "EMPRENDEDOR_PLUS",
-    "rol": "CLIENTE",
-    "company": "uniandes"
+    
 
 }
 ```
@@ -86,18 +79,11 @@ Consolida y cálcula los datos que se mostraran en la interfaz gráficando los r
 </td>
 <td> Respuesta </td>
 <td>
-Informacion 
+Reporte de Incidentes 
 
 ```json
 {
-    "company": "uniandes",
-    "email": "john.doe@example.com",
-    "id": "ed140dbe-06d8-45dc-b5fc-4eb46606fc47",
-    "id_number": "123456789",
-    "name": "John Doe",
-    "phoneNumber": "321567890",
-    "plan": "EMPRENDEDOR_PLUS",
-    "rol": "client"
+    
 }
 ```
 </td>
@@ -105,7 +91,7 @@ Informacion
 
 </table>
 
-### 2. Obtener la infromacion de un cliente
+### 2. Obtener la infromacion de los incidentes
 Obtiene un cliente a partir del id.
 
 <table>
@@ -137,8 +123,7 @@ N/A
 
 ```json
 {
-    "email": "john.doe@example.com",
-    "id": "b030dabc-ff9e-4cbb-8d0b-974a68f297da"
+    
 }
 ```
 </td>
@@ -146,46 +131,9 @@ N/A
 
 </table>
 
-### 3. Actualización de plan de clientes
+### 3. Consulta de salud del servicio
 
-Actualiza el plan de un cliente con los datos brindados.
-
-<table>
-<tr>
-<td> Método </td>
-<td> PUT </td>
-</tr>
-<tr>
-<td> Ruta </td>
-<td> <strong>/clients/update_client_plan</strong> </td>
-</tr>
-<tr>
-<td> Parámetros </td>
-<td> N/A </td>
-</tr>
-<tr>
-<td> Encabezados </td>
-<td>N/A</td>
-</tr>
-<tr>
-<td> Cuerpo </td>
-<td>
-
-```json
-{
-  "email": "john.doe@example.com",
-  "plan": "EMPRENDEDOR"
-}
-```
-</td>
-</tr>
-</table>
-
-
-
-### 4. Consulta de salud del servicio
-
-Usado para verificar el estado del servicio.
+Usado para verificar el estado del servicio analítica.
 
 <table>
 <tr>
@@ -194,7 +142,7 @@ Usado para verificar el estado del servicio.
 </tr>
 <tr>
 <td> Ruta </td>
-<td> <strong>/clients/ping</strong> </td>
+<td> <strong>/analitica/ping</strong> </td>
 </tr>
 <tr>
 <td> Parámetros </td>
@@ -210,7 +158,7 @@ Usado para verificar el estado del servicio.
 </tr>
 </table>
 
-### 5. Limpiar la base de datos
+### 4. Limpiar la base de datos
 
 Limpia la base de datos de clientes.
 
@@ -221,7 +169,7 @@ Limpia la base de datos de clientes.
 </tr>
 <tr>
 <td> Ruta </td>
-<td> <strong>/clients/clear_database</strong> </td>
+<td> <strong>/incidentes/clear_database</strong> </td>
 </tr>
 <tr>
 <td> Parámetros </td>
