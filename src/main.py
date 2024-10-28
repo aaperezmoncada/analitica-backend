@@ -4,8 +4,9 @@ import logging
 import time
 
 from flask import Flask, jsonify
+from flask_cors import CORS
 
-from src.models.incidente import db
+from src.models.incident import db
 from src.blueprints.services import services_bp
 
 logging.basicConfig(level=os.environ.get("LOG_LEVEL", "INFO"))
@@ -13,9 +14,10 @@ logger = logging.getLogger(__name__)
 
 def create_app(config_name, local=False):
     app = Flask(__name__)
-    app.register_blueprint(services_bp, url_prefix='/incidente')
+    CORS(app)
+    app.register_blueprint(services_bp, url_prefix='/analitica')
 
-    db_uri = 'sqlite:///incidente.db'
+    db_uri = 'sqlite:///analitica.db'
     try:
         if not local:
             db_host = os.environ.get('DB_HOST')
@@ -39,8 +41,9 @@ def create_app(config_name, local=False):
 
     db.init_app(app)
     time.sleep(5)
+    # db.drop_all() # TODO: TEMPORAL
     db.create_all()
-    
+
     return app
 
 app = create_app('analitica')
@@ -52,4 +55,4 @@ def handle_exception(err):
     return jsonify({"message": err.description}), err.code
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0', port=5005)

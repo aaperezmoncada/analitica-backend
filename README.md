@@ -169,7 +169,7 @@ Limpia la base de datos de clientes.
 </tr>
 <tr>
 <td> Ruta </td>
-<td> <strong>/incidentes/clear_database</strong> </td>
+<td> <strong>/incidents/clear_database</strong> </td>
 </tr>
 <tr>
 <td> Parámetros </td>

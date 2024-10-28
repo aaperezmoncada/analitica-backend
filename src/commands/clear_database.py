@@ -1,5 +1,5 @@
 from src.commands.base_command import BaseCommand
-from src.models.client import db
+from src.models import db
 
 class ClearDatabase(BaseCommand):
     def execute(self):

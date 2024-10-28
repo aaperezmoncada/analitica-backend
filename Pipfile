@@ -21,6 +21,7 @@ pytest = "~=7.2.0"
 pytest-cov = "~=4.0.0"
 pytest-mock = "~=3.10.0"
 pytest-env = "~=0.8.1"
+Flask-Cors = "~=5.0.0"
 exceptiongroup = "*"
 
 [dev-packages]

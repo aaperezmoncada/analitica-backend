@@ -17,16 +17,19 @@ class Type(enum.Enum):
 class Channel(enum.Enum):
     WEB = 1
     MOBILE = 2
+    CORREO = 3
+    TELEFONO = 4
 
 
 class Incident(db.Model):
-    __tablename__ = 'incidente'
+    __tablename__ = 'incident'
     id = db.Column(db.String, primary_key=True, unique=True, nullable=False)
     type = db.Column(db.Enum(Type), default=Type.PETICION)
     channel = db.Column(db.Enum(Channel), default=Channel.WEB)
     description = db.Column(db.String, nullable=False)
     date = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     user_id = db.Column(db.String, db.ForeignKey('user.id'), nullable=False)
+    resuelto = db.Column(db.Boolean, nullable=False)
 
 
 class EnumToDictionary(fields.Field):
