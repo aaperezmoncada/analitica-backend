@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "0e4bb23f-3c01-4c15-9afd-83ad1ee94f68",
+		"name": "Analitica Microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26828795",
+		"_collection_link": "https://crimson-crescent-337651.postman.co/workspace/Abcall-incidentes~663e09b9-0d09-4842-8b85-bd70383397dc/collection/26828795-0e4bb23f-3c01-4c15-9afd-83ad1ee94f68?action=share&source=collection_link&creator=26828795"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/incidents/ping",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"incidents",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clear Database",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/incidents/clear_database",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"incidents",
+						"clear_database"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the response body to a JSON object\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// Set the 'userId' variable with the 'id' from the response\r",
+							"pm.collectionVariables.set(\"userId\", jsonData.id);\r",
+							"\r",
+							"// Log the userId to the console for verification (optional)\r",
+							"console.log(\"User ID set: \" + jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"1193356789\",\n  \"name\": \"John Doe\",\n  \"phone\": \"1234567890\",\n  \"email\": \"john.doe@example.com\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/incidents/create_user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"incidents",
+						"create_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Incidents",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/analitica/get_incidents",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"analitica",
+						"get_incidents"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:5005"
+		},
+		{
+			"key": "userId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "incidentId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

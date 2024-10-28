@@ -41,7 +41,7 @@ def create_app(config_name, local=False):
 
     db.init_app(app)
     time.sleep(5)
-    # db.drop_all() # TODO: TEMPORAL
+    # db.drop_all()
     db.create_all()
 
     return app
