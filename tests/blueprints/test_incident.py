@@ -2,7 +2,6 @@ import unittest
 import json
 from flask import Flask
 from src.main import create_app
-from src.models.incident import db, Incident
 
 class TestIncidentEndpoints(unittest.TestCase):
 

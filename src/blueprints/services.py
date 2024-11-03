@@ -1,22 +1,13 @@
 from flask import Blueprint, request, jsonify
+
+from src.clients.manage_incident import IncidentClient
 from src.commands.ping import Ping
-from src.commands.clear_database import ClearDatabase
 from src.commands.get_user import GetUser
 from src.commands.get_incidents import GetIncidents
 
 from src.errors.errors import NotFound
 
 services_bp = Blueprint('services', __name__)
-
-
-@services_bp.route('/clear_database', methods=['POST'])
-def clear_database():
-    try:
-        command = ClearDatabase()
-        command.execute()
-        return jsonify({'message': 'Database cleared successfully'}), 200
-    except Exception as e:
-        return jsonify({'error': 'Internal server error'}), 500
 
 @services_bp.route('/ping', methods=['GET'])
 def ping():
@@ -37,18 +28,23 @@ def get_user(user_id):
         return jsonify({'error': 'Internal server error'}), 500
 
 # Endpoints for Incident
-@services_bp.route('/get_incidents', methods=['GET'])
-def get_incidents():
+@services_bp.route('/get_incidents/<company>', methods=['GET'])
+def get_incidents(company):
     try:
         agenteId = request.args.get('agenteId')
         tipoIncidente = request.args.get('tipoIncidente')
         fechaInicio = request.args.get('fechaInicio')
         fechaFin = request.args.get('fechaFin')
+
+        incidents = IncidentClient().get_incidents(company)
+
         command = GetIncidents({
             'agenteId': agenteId,
             'tipoIncidente': tipoIncidente,
             'fechaInicio': fechaInicio,
-            'fechaFin': fechaFin
+            'fechaFin': fechaFin,
+            'data': incidents,
+            'count_channels': 4,
         })
         result = command.execute()
         return jsonify(result), 200

@@ -1,6 +1,5 @@
 from src.commands.base_command import BaseCommand
 from src.errors.errors import NotFound
-from src.models.user import User, db
 
 class GetUser(BaseCommand):
     def __init__(self, user_id):
@@ -8,7 +7,7 @@ class GetUser(BaseCommand):
 
     def execute(self):
         try:
-            user = User.query.filter_by(id=self.user_id).first()
+            user = {} #User.query.filter_by(id=self.user_id).first()
             if not user:
                 raise NotFound(f'User with id {self.user_id} not found')
 

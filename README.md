@@ -24,17 +24,14 @@ incidentes para la analítica
 │   │   └── services.py
 │   ├── commands
 │   │   ├── base_command.py
-│   │   ├── get_analitica.py
-│   │   ├── create_reporte.py
+│   │   ├── get_analitics.py
 │   │   └── ping.py
 │   ├── errors
 │   │   ├── errors.py
 │   │   └── __init__.py
 │   ├── __init__.py
-│   ├── main.py
-│   └── models
-│       ├── __init__.py
-│       └── incidente.py
+│   └── main.py
+│   
 └── tests
     ├── __init__.py
     └── test_create_reporte.py
