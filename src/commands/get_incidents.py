@@ -48,18 +48,24 @@ class GetIncidents(BaseCommand):
             incidentClient = IncidentClient()
             incidents = incidentClient.get_incidents(self.company).json()
 
-            print(incidents, file=sys.stderr)
-
             sin_solucion = [0] * 7
             con_solucion = [0] * 7
             incidents_canal = [0] * 2 #Actualizar según Enum de Channel
             contador_agentes = {}
+            listado_agentes = {}
             contador_usuarios = {}
             max_agentes = 2
             incidentes_resueltos = 0
             total = 0
 
             for value in incidents:
+                if not listado_agentes.get(value['agentId']):
+                    try:
+                        user = incidentClient.get_user_id(value['agentId'], self.company).json()
+                    except:
+                        user = None
+                    listado_agentes[value['agentId']] = user
+
                 if not self.registro_filtrado(value):
                     continue
 
@@ -78,11 +84,8 @@ class GetIncidents(BaseCommand):
 
                     # Agrupamiento de incidentes sin resolver por agente
                     if not value['agentId'] in contador_agentes:
-                        try:
-                            user = incidentClient.get_user_id(value['agentId'], self.company).json()
-                        except:
-                            user = None
-                        contador_agentes[value['agentId']] = {'name': user['name'] if user else 'NN', 'count': 1}
+                        agente = listado_agentes[value['agentId']]
+                        contador_agentes[value['agentId']] = {'name': agente['name'] if agente else 'NN', 'id': value['agentId'], 'count': 1}
                     else:
                         contador_agentes[value['agentId']]['count'] += 1
                 contador_usuarios[value['userId']] = True
@@ -95,6 +98,7 @@ class GetIncidents(BaseCommand):
 
             # Ordenamiento de agentes de mayor a menor según los casos sin resolver.
             lista_agentes = list(map(lambda item: item['name'], sorted(contador_agentes.values(), key=lambda x: x['count'], reverse=True)))
+            lista_agentes_id = list(map(lambda item: {'name': item['name'], 'id': item['id']}, listado_agentes))
 
             incidents_info = {
                 'total_incidentes': total,
@@ -103,6 +107,7 @@ class GetIncidents(BaseCommand):
                 'incidentes_canal': incidents_canal,
                 'sin_solucion': sin_solucion,
                 'con_solucion': con_solucion,
+                'agentes': lista_agentes_id,
                 'lista_agentes': lista_agentes[:max_agentes],
             }
 
