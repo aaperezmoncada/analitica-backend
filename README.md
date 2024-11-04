@@ -72,8 +72,6 @@ Consolida y cálcula los datos que se mostraran en la interfaz gráficando los r
 }
 ```
 </td>
-</tr>
-</td>
 <td> Respuesta </td>
 <td>
 Reporte de Incidentes 

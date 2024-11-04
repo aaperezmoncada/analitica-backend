@@ -11,3 +11,7 @@ class IncidentClient:
     def get_incidents(self, company):
         get_data_incidents_url = f'{self.incident_path}/incidents/get_incidents/{company}'
         return requests.get(get_data_incidents_url)
+
+    def get_user_id(self, user_id, company):
+        get_data_user_url = f'{self.incident_path}/incidents/get_user/{user_id}/{company}'
+        return requests.get(get_data_user_url)

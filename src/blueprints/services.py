@@ -36,18 +36,14 @@ def get_incidents(company):
         fechaInicio = request.args.get('fechaInicio')
         fechaFin = request.args.get('fechaFin')
 
-        incidents = IncidentClient().get_incidents(company)
-
-        command = GetIncidents({
+        command = GetIncidents(company, {
             'agenteId': agenteId,
             'tipoIncidente': tipoIncidente,
             'fechaInicio': fechaInicio,
-            'fechaFin': fechaFin,
-            'data': incidents,
-            'count_channels': 4,
+            'fechaFin': fechaFin
         })
         result = command.execute()
         return jsonify(result), 200
     except Exception as e:
-        return jsonify({'error': 'Internal server error'}), 500
+        return jsonify({'error': 'Internal server error: {}'.format(e)}), 500
 
