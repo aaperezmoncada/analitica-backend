@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  analitica-microservice:
+    build: ..
+    ports:
+      - "5005:5005"
+    environment:
+      - FLASK_ENV=development
+
+    networks:
+      - abc-call-network
+
+networks:
+  abc-call-network:
+    external: true
