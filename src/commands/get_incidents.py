@@ -94,6 +94,11 @@ class GetIncidents(BaseCommand):
                     incidents_canal[0] += 1
                 elif value['channel'] == 'MOBILE':
                     incidents_canal[1] += 1
+                elif value['channel'] == 'TELEFONO':
+                    incidents_canal[1] += 1
+                elif value['channel'] == 'CORREO':
+                    incidents_canal[1] += 1
+
                 total += 1
 
             # Ordenamiento de agentes de mayor a menor según los casos sin resolver.
