@@ -1,5 +1,9 @@
 import datetime
+import json
 import sys
+import traceback
+
+from flask import jsonify
 
 from src.clients.manage_client import ManageClient
 from src.clients.manage_incident import IncidentClient
@@ -46,6 +50,7 @@ class GetIncidents(BaseCommand):
     def execute(self):
         try:
             incidentClient = IncidentClient()
+            manageClient = ManageClient()
             incidents = incidentClient.get_incidents(self.company).json()
 
             sin_solucion = [0] * 7
@@ -54,14 +59,19 @@ class GetIncidents(BaseCommand):
             contador_agentes = {}
             listado_agentes = {}
             contador_usuarios = {}
+            lista_agentes_id = []
             max_agentes = 2
             incidentes_resueltos = 0
             total = 0
 
             for value in incidents:
-                if not listado_agentes.get(value['agentId']):
+                if not value['agentId'] in listado_agentes.keys():
                     try:
-                        user = incidentClient.get_user_id(value['agentId'], self.company).json()
+                        user = manageClient.get_data_user(value['agentId']).json()
+                        lista_agentes_id.append({
+                            'id': value['agentId'],
+                            'name': user['name'],
+                        })
                     except:
                         user = None
                     listado_agentes[value['agentId']] = user
@@ -94,11 +104,15 @@ class GetIncidents(BaseCommand):
                     incidents_canal[0] += 1
                 elif value['channel'] == 'MOBILE':
                     incidents_canal[1] += 1
+                elif value['channel'] == 'TELEFONO':
+                    incidents_canal[1] += 1
+                elif value['channel'] == 'CORREO':
+                    incidents_canal[1] += 1
+
                 total += 1
 
             # Ordenamiento de agentes de mayor a menor según los casos sin resolver.
             lista_agentes = list(map(lambda item: item['name'], sorted(contador_agentes.values(), key=lambda x: x['count'], reverse=True)))
-            lista_agentes_id = list(map(lambda item: {'name': item['name'], 'id': item['id']}, listado_agentes))
 
             incidents_info = {
                 'total_incidentes': total,
