@@ -128,8 +128,4 @@ class GetIncidents(BaseCommand):
             return incidents_info
 
         except Exception as e:
-            exc_type, exc_value, exc_traceback = sys.exc_info()
-            print(repr(traceback.format_tb(exc_traceback)), file=sys.stderr)
-            print("*** tb_lineno:", exc_traceback.tb_lineno, file=sys.stderr)
-            print(e, file=sys.stderr)
             raise e
