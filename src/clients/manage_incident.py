@@ -3,7 +3,8 @@ import os
 
 class IncidentClient:
     def __init__(self):
-        self.incident_path = "http://proyecto-final-miso-lb-1181535848.us-east-1.elb.amazonaws.com:5000"
+        #self.incident_path = "http://proyecto-final-miso-lb-1181535848.us-east-1.elb.amazonaws.com:5000"
+        self.incident_path = "http://incidents-microservice:5003"
         if os.environ.get("INCIDENT_PATH"):
             self.incident_path = os.environ.get("INCIDENT_PATH")
         self.headers = {"Content-Type": "application/json"}
