@@ -96,11 +96,11 @@ Obtiene un cliente a partir del id.
 </tr>
 <tr>
 <td> Ruta </td>
-<td> <strong>/clients/get_client</strong> </td>
+<td> <strong>/analitica/get_incidents<company> </td>
 </tr>
 <tr>
 <td> Parámetros </td>
-<td> <strong>idCliente</strong></td>
+<td> <strong>company</strong></td>
 </tr>
 <tr>
 <td> Encabezados </td>
@@ -153,44 +153,7 @@ Usado para verificar el estado del servicio analítica.
 </tr>
 </table>
 
-### 4. Limpiar la base de datos
 
-Limpia la base de datos de clientes.
-
-<table>
-<tr>
-<td> Método </td>
-<td> POST </td>
-</tr>
-<tr>
-<td> Ruta </td>
-<td> <strong>/incidents/clear_database</strong> </td>
-</tr>
-<tr>
-<td> Parámetros </td>
-<td> N/A </td>
-</tr>
-<tr>
-<td> Encabezados </td>
-<td>N/A</td>
-</tr>
-<tr>
-<td> Cuerpo </td>
-<td>N/A</td>
-</tr>
-</td>
-<td> Respuesta </td>
-<td>
-
-```json
-{
-    "message": "Database cleared successfully"
-}
-```
-</td>
-<tr>
-
-</table>
 
 ## Pruebas
 

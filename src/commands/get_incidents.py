@@ -1,5 +1,9 @@
 import datetime
+import json
 import sys
+import traceback
+
+from flask import jsonify
 
 from src.clients.manage_client import ManageClient
 from src.clients.manage_incident import IncidentClient
@@ -46,20 +50,32 @@ class GetIncidents(BaseCommand):
     def execute(self):
         try:
             incidentClient = IncidentClient()
+            manageClient = ManageClient()
             incidents = incidentClient.get_incidents(self.company).json()
-
-            print(incidents, file=sys.stderr)
 
             sin_solucion = [0] * 7
             con_solucion = [0] * 7
             incidents_canal = [0] * 2 #Actualizar según Enum de Channel
             contador_agentes = {}
+            listado_agentes = {}
             contador_usuarios = {}
+            lista_agentes_id = []
             max_agentes = 2
             incidentes_resueltos = 0
             total = 0
 
             for value in incidents:
+                if not value['agentId'] in listado_agentes.keys():
+                    try:
+                        user = manageClient.get_data_user(value['agentId']).json()
+                        lista_agentes_id.append({
+                            'id': value['agentId'],
+                            'name': user['name'],
+                        })
+                    except:
+                        user = None
+                    listado_agentes[value['agentId']] = user
+
                 if not self.registro_filtrado(value):
                     continue
 
@@ -78,11 +94,8 @@ class GetIncidents(BaseCommand):
 
                     # Agrupamiento de incidentes sin resolver por agente
                     if not value['agentId'] in contador_agentes:
-                        try:
-                            user = incidentClient.get_user_id(value['agentId'], self.company).json()
-                        except:
-                            user = None
-                        contador_agentes[value['agentId']] = {'name': user['name'] if user else 'NN', 'count': 1}
+                        agente = listado_agentes[value['agentId']]
+                        contador_agentes[value['agentId']] = {'name': agente['name'] if agente else 'NN', 'id': value['agentId'], 'count': 1}
                     else:
                         contador_agentes[value['agentId']]['count'] += 1
                 contador_usuarios[value['userId']] = True
@@ -91,6 +104,11 @@ class GetIncidents(BaseCommand):
                     incidents_canal[0] += 1
                 elif value['channel'] == 'MOBILE':
                     incidents_canal[1] += 1
+                elif value['channel'] == 'TELEFONO':
+                    incidents_canal[1] += 1
+                elif value['channel'] == 'CORREO':
+                    incidents_canal[1] += 1
+
                 total += 1
 
             # Ordenamiento de agentes de mayor a menor según los casos sin resolver.
@@ -103,6 +121,7 @@ class GetIncidents(BaseCommand):
                 'incidentes_canal': incidents_canal,
                 'sin_solucion': sin_solucion,
                 'con_solucion': con_solucion,
+                'agentes': lista_agentes_id,
                 'lista_agentes': lista_agentes[:max_agentes],
             }
 
