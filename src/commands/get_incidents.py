@@ -41,9 +41,9 @@ class GetIncidents(BaseCommand):
         if self.tipoIncidente and self.tipoIncidente!='' and self.tipoIncidente!=value['type']:
             return False
         fecha_value = self.get_date(value['date'], FORMAT_DATE)
-        if self.fecha_inicio and fecha_value <= self.fecha_inicio:
+        if self.fecha_inicio and fecha_value < self.fecha_inicio:
             return False
-        if self.fecha_fin and fecha_value >= self.fecha_fin:
+        if self.fecha_fin and fecha_value > self.fecha_fin:
             return False
         return True
 
