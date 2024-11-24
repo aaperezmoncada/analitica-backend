@@ -142,3 +142,6 @@ class GetIncidents(BaseCommand):
 
         except Exception as e:
             raise e
+
+
+        

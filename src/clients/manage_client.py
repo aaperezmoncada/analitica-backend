@@ -12,3 +12,5 @@ class ManageClient:
     def get_data_user(self, id_user):
         get_data_client_url = f'{self.client_path}/clients/get_client/{id_user}'
         return requests.get(get_data_client_url)
+
+

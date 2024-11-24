@@ -5,3 +5,5 @@ class Ping(BaseCommand):
 
     def execute(self):
         return 'pong'
+
+
