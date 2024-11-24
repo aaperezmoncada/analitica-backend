@@ -16,34 +16,34 @@ class TestUserEndpoints(unittest.TestCase):
         response = mock_user.get_user()
         assert response.name == "John Doe"
 
-    # @patch("src.commands.get_user.GetUser.execute")
-    # def test_execute_success(self, mock_execute):
-    #     # Mock de la respuesta para un usuario encontrado
-    #     mock_execute.return_value = {
-    #         'id': 1,
-    #         'name': 'John Doe',
-    #         'phone': '1234567890',
-    #         'email': 'john@example.com',
-    #         'incidents': []
-    #     }
-    #
-    #     command = GetUser(1)
-    #     result = command.execute()
-    #
-    #     # Verificar el resultado
-    #     assert result['id'] == 1
-    #     assert result['name'] == 'John Doe'
-    #     assert result['phone'] == '1234567890'
-    #
-    # @patch("src.commands.get_user.GetUser.execute")
-    # def test_execute_user_not_found(self, mock_execute):
-    #     # Simular el error de 'Usuario no encontrado'
-    #     mock_execute.side_effect = NotFound("User not found")
-    #
-    #     command = GetUser(999)
-    #
-    #     with self.assertRaises(NotFound):
-    #         command.execute()
+    @patch("src.commands.get_user.GetUser.execute")
+    def test_execute_success(self, mock_execute):
+        # Mock de la respuesta para un usuario encontrado
+        mock_execute.return_value = {
+            'id': 1,
+            'name': 'John Doe',
+            'phone': '1234567890',
+            'email': 'john@example.com',
+            'incidents': []
+        }
+
+        command = GetUser(1)
+        result = command.execute()
+
+        # Verificar el resultado
+        assert result['id'] == 1
+        assert result['name'] == 'John Doe'
+        assert result['phone'] == '1234567890'
+
+    @patch("src.commands.get_user.GetUser.execute")
+    def test_execute_user_not_found(self, mock_execute):
+        # Simular el error de 'Usuario no encontrado'
+        mock_execute.side_effect = NotFound("User not found")
+
+        command = GetUser(999)
+
+        with self.assertRaises(NotFound):
+            command.execute()
 
 if __name__ == '__main__':
     unittest.main()

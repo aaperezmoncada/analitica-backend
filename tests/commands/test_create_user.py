@@ -5,7 +5,7 @@ from src.errors.errors import BadRequest, PreconditionFailed
 class TestCreateUserCommand(unittest.TestCase):
     def setUp(self):
         self.valid_json = {
-            'id': '123',
+            'id': '1',
             'name': 'John Doe',
             'phone': '1234567890',
             'email': 'john.doe@example.com',
