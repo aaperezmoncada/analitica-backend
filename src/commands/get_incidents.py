@@ -62,6 +62,8 @@ class GetIncidents(BaseCommand):
             lista_agentes_id = []
             max_agentes = 2
             incidentes_resueltos = 0
+            incidentes_sin_resolver = 0
+            global_recommendation = ''
             total = 0
 
             for value in incidents:
@@ -88,6 +90,7 @@ class GetIncidents(BaseCommand):
                     # Totalizador de incidentes resueltos
                     incidentes_resueltos += 1
                 else:
+                    incidentes_sin_resolver += 1
                     # Totalizador de incidentes por semana sin resolver
                     if weekday != -1:
                         sin_solucion[weekday] += 1
@@ -108,12 +111,21 @@ class GetIncidents(BaseCommand):
                     incidents_canal[1] += 1
                 elif value['channel'] == 'CORREO':
                     incidents_canal[1] += 1
-
                 total += 1
 
-            # Ordenamiento de agentes de mayor a menor según los casos sin resolver.
             lista_agentes = list(map(lambda item: item['name'], sorted(contador_agentes.values(), key=lambda x: x['count'], reverse=True)))
-
+            if incidents:
+                if incidentes_resueltos > incidentes_sin_resolver:
+                    if incidentes_sin_resolver > 0:
+                        global_recommendation = "Evaluar el desempeño de los agentes y asignar recursos de manera más eficiente."
+                    else:
+                        global_recommendation = "El proceso está funcionando correctamente, se debe seguir con el enfoque actual."
+                elif incidentes_sin_resolver > incidentes_resueltos:
+                    global_recommendation = "Es necesario escalar más incidentes o mejorar la asignación de recursos."
+                else:
+                    global_recommendation = "Evaluar el desempeño de los agentes y asignar recursos de manera más eficiente."
+            else:
+                global_recommendation = "Se puede determinar el correcto funcionamiento del servicio, sin embargo se recomienda aplicar otras alternativas de verificación como encuestas de satisfacción "
             incidents_info = {
                 'total_incidentes': total,
                 'total_usuarios': len(contador_usuarios),
@@ -123,9 +135,13 @@ class GetIncidents(BaseCommand):
                 'con_solucion': con_solucion,
                 'agentes': lista_agentes_id,
                 'lista_agentes': lista_agentes[:max_agentes],
+                'global_recommendation': global_recommendation
             }
 
             return incidents_info
 
         except Exception as e:
             raise e
+
+
+        

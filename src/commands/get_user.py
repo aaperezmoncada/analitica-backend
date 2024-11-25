@@ -32,5 +32,6 @@ class GetUser(BaseCommand):
             return user_info
 
         except Exception as e:
-            db.session.rollback()
             raise e
+
+

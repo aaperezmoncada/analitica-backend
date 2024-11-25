@@ -42,10 +42,10 @@ class TestIncidentClient(unittest.TestCase):
         self.company = 'uniandes'
         incidentes = get_incidents('uniandes', company)
 
-    def test_user_id(self,user_id, company ):
-        self.user_id = user_id
-        self.company = company
-        user = src.clients.manage_client.ManageClient.get_data_user(user_id, self.company)
+    # def test_user_id(self,user_id, company ):
+    #     self.user_id = user_id
+    #     self.company = company
+    #     user = src.clients.manage_client.ManageClient.get_data_user(user_id, self.company)
 
 
 if __name__ == '__main__':

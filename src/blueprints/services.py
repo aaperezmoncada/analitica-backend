@@ -47,3 +47,5 @@ def get_incidents(company):
     except Exception as e:
         return jsonify({'error': 'Internal server error: {}'.format(e)}), 500
 
+
+
