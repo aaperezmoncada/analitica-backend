@@ -22,19 +22,31 @@ incidentes para la analítica
 │   ├── blueprints
 │   │   ├── __init__.py
 │   │   └── services.py
+│   ├── clients
+│   │   ├── manage_client.py
+│   │   └── manage_incident.py
 │   ├── commands
+│   │   ├── __init__.py
 │   │   ├── base_command.py
-│   │   ├── get_analitics.py
+│   │   ├── get_incidents.py
+│   │   ├── get_user.py
 │   │   └── ping.py
 │   ├── errors
-│   │   ├── errors.py
-│   │   └── __init__.py
+│   │   ├── __init__.py
+│   │   └── errors.py
 │   ├── __init__.py
 │   └── main.py
-│   
 └── tests
-    ├── __init__.py
-    └── test_create_reporte.py
+│   ├── blueprints
+│   │   ├── test_incidents.py
+│   │   └── test_ping.py
+│   │   └── test_user.py
+│   ├── commands
+│   │   ├── test_create_user.py
+│   │   ├── test_get_incidents.py
+│   │   ├── test_get_user.py
+│   │   ├── test_ping_command.py
+
 ```
 
 
@@ -44,49 +56,7 @@ incidentes para la analítica
 
 Consolida y cálcula los datos que se mostraran en la interfaz gráficando los resultados
 
-<table>
-<tr>
-<td> Método </td>
-<td> POST </td>
-</tr>
-<tr>
-<td> Ruta </td>
-<td> <strong>/analitica/reporte</strong> </td>
-</tr>
-<tr>
-<td> Parámetros </td>
-<td> N/A </td>
-</tr>
-<tr>
-<td> Encabezados </td>
-<td>N/A</td>
-</tr>
-<tr>
-<td> Cuerpo </td>
-<td>
-
-```json
-{
-    
-
-}
-```
-</td>
-<td> Respuesta </td>
-<td>
-Reporte de Incidentes 
-
-```json
-{
-    
-}
-```
-</td>
-<tr>
-
-</table>
-
-### 2. Obtener la infromacion de los incidentes
+### Obtener la infromacion de los incidentes
 Obtiene un cliente a partir del id.
 
 <table>
@@ -96,7 +66,7 @@ Obtiene un cliente a partir del id.
 </tr>
 <tr>
 <td> Ruta </td>
-<td> <strong>/analitica/get_incidents<company> </td>
+<td> <strong>/analitica/get_incidents/<company> </td>
 </tr>
 <tr>
 <td> Parámetros </td>
