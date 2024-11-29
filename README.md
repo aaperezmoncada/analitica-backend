@@ -57,7 +57,7 @@ incidentes para la analítica
 Consolida y cálcula los datos que se mostraran en la interfaz gráficando los resultados
 
 ### Obtener la infromacion de los incidentes
-Obtiene un cliente a partir del id.
+Obtiene el listado de incidentes
 
 <table>
 <tr>
@@ -71,6 +71,50 @@ Obtiene un cliente a partir del id.
 <tr>
 <td> Parámetros </td>
 <td> <strong>company</strong></td>
+</tr>
+<tr>
+<td> Encabezados </td>
+<td>N/A</td>
+</tr>
+<tr>
+<td> Cuerpo </td>
+<td>
+N/A
+</td>
+</tr>
+</td>
+<td> Respuesta </td>
+<td>
+
+```json
+{
+    
+}
+```
+</td>
+<tr>
+
+</table>
+
+### 2. Usuario por id
+
+Usuario de incidente
+
+### Obtener la infromacion de los incidentes
+Obtiene el listado de incidentes
+
+<table>
+<tr>
+<td> Método </td>
+<td> GET </td>
+</tr>
+<tr>
+<td> Ruta </td>
+<td> <strong>/analitica/get_user/<user_id> </td>
+</tr>
+<tr>
+<td> Parámetros </td>
+<td> <strong>user_id</strong></td>
 </tr>
 <tr>
 <td> Encabezados </td>
