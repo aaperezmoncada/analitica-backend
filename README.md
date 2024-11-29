@@ -85,30 +85,21 @@ N/A
 </td>
 <td> Respuesta </td>
 <td>
-[
+    [
+    ```json
     {
-    
     "id": "123e4567-e89b-12d3-a456-426614174000",
-    
-    "type": "PETICION",
-    
-    "description": "Test incident",
-    
-    "date": "2024-10-01T00:00:00Z",
-    
-    "userId": "12345",
-    
-    "channel": "WEB",
-    
-    "agentId": "agent123",
-    
-    "company": "example_company",
-    
-    "solved": false,
-    
-    "response": null
-    
-}
+    "type": "PETICION",    
+    "description": "Test incident",    
+    "date": "2024-10-01T00:00:00Z",    
+    "userId": "12345",    
+    "channel": "WEB",    
+    "agentId": "agent123",    
+    "company": "example_company",    
+    "solved": false,    
+    "response": null    
+    }
+    ```
 ]
 </td>
 <tr>
@@ -119,7 +110,7 @@ N/A
 
 Usuario de incidente
 
-### Obtener la infromacion de un usuario
+### Obtener la información de un usuario
 Obtiene el listado de usuarios 
 
 <table>
@@ -150,7 +141,15 @@ N/A
 
 ```json
 {
-    
+    "company": "uniandes",
+    "email": "john.doe@example.com",
+    "id": "ed140dbe-06d8-45dc-b5fc-4eb46606fc47",
+    "id_number": "123456789",
+    "name": "John Doe",
+    "phoneNumber": "321567890",
+    "plan": "EMPRENDEDOR_PLUS",
+    "rol": "client",
+    "idType": "CEDULA_CIUDADANIA"
 }
 ```
 </td>
