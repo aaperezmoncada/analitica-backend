@@ -119,8 +119,8 @@ N/A
 
 Usuario de incidente
 
-### Obtener la infromacion de los incidentes
-Obtiene el listado de incidentes
+### Obtener la infromacion de un usuario
+Obtiene el listado de usuarios 
 
 <table>
 <tr>
