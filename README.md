@@ -85,22 +85,21 @@ N/A
 </td>
 <td> Respuesta </td>
 <td>
-    [
-    ```json
-    {
+
+```json
+{
     "id": "123e4567-e89b-12d3-a456-426614174000",
-    "type": "PETICION",    
-    "description": "Test incident",    
-    "date": "2024-10-01T00:00:00Z",    
-    "userId": "12345",    
-    "channel": "WEB",    
-    "agentId": "agent123",    
-    "company": "example_company",    
-    "solved": false,    
-    "response": null    
-    }
-    ```
-]
+    "type": "PETICION",
+    "description": "Test incident",
+    "date": "2024-10-01T00:00:00Z",
+    "userId": "12345",
+    "channel": "WEB",
+    "agentId": "agent123",
+    "company": "example_company",
+    "solved": false,
+    "response": null
+}
+```
 </td>
 <tr>
 
