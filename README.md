@@ -164,9 +164,18 @@ Usado para verificar el estado del servicio analítica.
 <tr>
 <td> Cuerpo </td>
 <td> N/A </td>
+</td>
+<td> Respuesta </td>
+<td>
+
+```json
+{
+    
+}
+```
+</td>
 </tr>
 </table>
-
 
 
 ## Pruebas
